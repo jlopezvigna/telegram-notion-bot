@@ -35,5 +35,5 @@ Feel free to contribute! If you find any bugs or have any improvements, open an 
 
 ## Credits
 
-This project was created by [your_name] and is distributed under the [license_type] license.
+This project was created by jlopezvigna and is distributed under the MIT license.
 
