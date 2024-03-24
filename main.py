@@ -180,6 +180,7 @@ async def description(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int
 
 async def skip_description(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Skips the description and  ends the conversation."""
+    context.user_data['description'] = ""
     logger.info("the task ** %s ** did not have description.", context.user_data['title'])
     await create_notion_entry(update, context)
 
