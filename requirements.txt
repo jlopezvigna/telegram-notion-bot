@@ -2,3 +2,4 @@ python-dotenv~=1.0.1
 pandas~=2.2.1
 Telethon~=1.34.0
 notion~=0.0.28
+python-telegram-bot~=21.0.1
