@@ -27,7 +27,7 @@ This bot allows you to add tasks to Notion directly from Telegram, simply by ans
 1. Clone this repository.
 2. Install the dependencies by running `pip install -r requirements.txt`.
 3. Configure your Telegram and Notion tokens in the `config.py` file.
-4. Run the bot with `python bot.py`.
+4. Run the bot with `python main.py`.
 
 ## Contributing
 
