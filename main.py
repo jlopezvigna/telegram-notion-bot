@@ -19,7 +19,10 @@ BOT_TOKEN = os.getenv('BOT_TOKEN')
 BOT_USERNAME = os.getenv('BOT_USERNAME')
 
 logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    level=logging.INFO,
+    filename='bot.log',
+    filemode='a'
 )
 # set higher logging level for httpx to avoid all GET and POST requests being logged
 logging.getLogger("httpx").setLevel(logging.WARNING)
@@ -166,7 +169,7 @@ async def create_notion_entry(update: Update, context: ContextTypes.DEFAULT_TYPE
         await update.message.reply_text("Your task has been created.")
     except Exception as error:
         await update.message.reply_text("Something went wrong. Please try again.")
-        logger.info("Error in creating item: %s || %s", error, type(error).__name__)
+        logger.error("Error in creating item: %s || %s", error, type(error).__name__)
 
 
 async def description(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
