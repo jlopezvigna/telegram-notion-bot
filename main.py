@@ -9,6 +9,7 @@ from telegram.ext import (
 )
 from notion_client import Client
 import logging
+from logging.handlers import TimedRotatingFileHandler
 from dotenv import load_dotenv
 import os
 
@@ -18,11 +19,15 @@ NOTION_TOKEN = os.getenv('NOTION_TOKEN')
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 USERNAME_ID = int(os.getenv('USERNAME_ID'))
 
+log_file = 'app.log'
+handler = TimedRotatingFileHandler(log_file, when='midnight', interval=1, backupCount=7)
+handler.suffix = '%Y-%m-%d'  # Añade la fecha al nombre del archivo de respaldo
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+
 logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[handler],
     level=logging.INFO,
-    filename='logs',
-    filemode='a'
 )
 
 # set higher logging level for httpx to avoid all GET and POST requests being logged
