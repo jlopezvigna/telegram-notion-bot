@@ -16,7 +16,7 @@ load_dotenv()  # take environment variables from .env.
 NOTION_DATABASE_ID = os.getenv('NOTION_DATABASE_ID')
 NOTION_TOKEN = os.getenv('NOTION_TOKEN')
 BOT_TOKEN = os.getenv('BOT_TOKEN')
-BOT_USERNAME = os.getenv('BOT_USERNAME')
+USERNAME_ID = int(os.getenv('USERNAME_ID'))
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -208,7 +208,7 @@ def main() -> None:
 
     # Add conversation handler with the states PRIORITY, TAG, STATUS and DESCRIPTION
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler("start", start)],
+        entry_points=[CommandHandler("start", start, filters=filters.User(USERNAME_ID))],
         states={
             TITLE: [MessageHandler(filters.TEXT & ~filters.COMMAND, title)],
             PRIORITY: [
